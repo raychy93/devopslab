@@ -1,0 +1,7 @@
+all:
+  hosts:
+    web:
+      ansible_host: 34.228.200.153
+      ansible_user: ec2-user
+      ansible_ssh_private_key_file: /Users/raychy/.ssh/tf-lab-key.pem
+      ansible_ssh_common_args: "-o StrictHostKeyChecking=no"

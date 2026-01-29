@@ -1,0 +1,37 @@
+- name: Provision nginx and homepage
+  hosts: web
+  become: true
+
+  tasks:
+    - name: Install nginx
+      package:
+        name: nginx
+        state: present
+
+    - name: Enable and start nginx
+      service:
+        name: nginx
+        state: started
+        enabled: true
+
+    - name: Write html file
+      copy:
+        dest: /usr/share/nginx/html/index.html
+        mode: "0644"
+        content: |
+          <!doctype html>
+          <html>
+            <head>
+              <meta charset="utf-8">
+              <title>Terraform and Ansible Lab</title>
+            </head>
+            <body style="font-family: Arial, sans-serif;">
+              <h1>If you're reading this, looks like it worked :) </h1>
+              <p>Provisioned by Ansible on Amazon Linux 2023</p>
+              <ul>
+                <li><b>Host:</b> {{ inventory_hostname }}</li>
+                <li><b>IP:</b> {{ ansible_host }}</li>
+                <li><b>Time:</b> {{ ansible_date_time.iso8601 }}</li>
+              </ul>
+            </body>
+          </html>
