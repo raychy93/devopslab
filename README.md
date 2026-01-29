@@ -42,13 +42,13 @@ Prior to running Ansible, ensure to set the following:
 
 ```bash
 export TF_PUBLIC_IP=$(terraform output -raw public_ip)
-export TF_PEM_PATH=!/.ssh/tf-lab-key.pem
+export TF_PEM_PATH=/path/to/your/tf-lab-key.pem
 ```
 
 Following this, in the ansible directory:
 
 ```bash
-cd ../ansible  
+
 ansible-playbook playbooks/site.yml 
 ```
 
